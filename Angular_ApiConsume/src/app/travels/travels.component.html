@@ -1,0 +1,96 @@
+<nav class="navbar navbar-light bg-dark">
+    <div class="container">
+        <h2 style="color:aliceblue"><i class="bi bi-arrows-move"></i> HappyTravels<i class="bi bi-bookmark-star"></i></h2>
+    </div>
+    <div class="d-inline-flex">
+        <button class="btn btn-primary" (click)="addtravels()" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+    </div>
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Travel Id</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Gender</th>
+            <th>Phoneno</th>
+            <th>Travel_From</th>
+            <th>Travel_to</th>
+            <th>Action</th>
+
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let tt of traveldata">
+            <td>{{tt.id}}</td>
+            <td>{{tt.firstname}}</td>
+            <td>{{tt.lastname}}</td>
+            <td>{{tt.gender}}</td>
+            <td>{{tt.phoneno}}</td>
+            <td>{{tt.travelFrom}}</td>
+            <td>{{tt.travelTo}}</td>
+            <td>
+                <button (click)="OnEdit(tt)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-warning">Edit</button>&nbsp;
+                <button (click)="deletetraveldetails(tt)" class="btn btn-danger">Delete</button>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form [formGroup]="formvalue">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">FirstName</label>
+                  <input type="text"  formControlName="firstname"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                 
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">LastName</label>
+                    <input type="text"  formControlName="lastname"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                   
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Gender</label>
+                    <input type="text"  formControlName="gender"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                   
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">PhoneNo</label>
+                    <input type="text"  formControlName="phoneno"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                   
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Travel_From</label>
+                    <input type="text"  formControlName="travelFrom"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                   
+                  </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Travel_to</label>
+                  <input type="text"  formControlName="travelTo"class="form-control" id="exampleInputPassword1">
+                </div>
+                
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  id ="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button"  *ngIf="showadd" (click)="posttraveldetails()"     class="btn btn-primary">Add Tourist</button>
+          <button type="button" *ngIf="showupdate" (click)="updatetravelsdetails()" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
