@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Angular_Api.Controllers
 {
-    [ApiController]
+    
     [Route("api/[controller]")]
-    
-    
+    [ApiController]
+
     public class TravelController : ControllerBase
     {
         private Interface_ApiService con;
@@ -30,7 +30,7 @@ namespace Angular_Api.Controllers
         }
         [HttpPost]
         /*[Route("[action]")]
-        [Route("api/Travel/Addt")]*/
+        [Route("api/Travel")]*/
         public  Happytravels Addt(Happytravels ht)
         {
             return con.Addtravel(ht);
@@ -42,14 +42,16 @@ namespace Angular_Api.Controllers
             return  con.Getbyid(id);
             
         }*/
-        [HttpPut]
-        /*[Route("[action]")]
-        [Route("api/Travel/UpdateT")]*/
-        public Happytravels UpdateT(Happytravels ut,int id)
+        [HttpPut("{id}")]
+       /* [Route("[action]")]
+        [Route("api/Travel")]*/
+        public Happytravels UpdateT(int id,Happytravels ut)
         {
-            return con.UpdateTravels(ut,id);
+            return con.UpdateTravels(id, ut);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
+        /*[Route("[action]")]
+        [Route("api/Travel")]*/
         public Happytravels Delete(int id)
         {
             return con.DeleteTravels(id);
